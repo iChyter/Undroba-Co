@@ -52,17 +52,133 @@
             <p>Caja</p>
           </div>
         </div>
-      </div>
+        </div>
+        
+        <div class="card mt-6">
+          <div class="card-header">
+            <h3 class="card-title">Comparativa de Ingresos</h3>
+          </div>
+          <div class="card-body">
+            <div id="apex-multiple-area-charts-compare-alt" class="w-full"></div>
+          </div>
+        </div>
     </main>
   </div>
 
   <div class="toast" id="toast"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="../js/supabase.js"></script>
   <script src="../js/app.js"></script>
   <script src="admin-sidebar.js"></script>
   <script src="admin.js"></script>
+  <script>
+    const buildTooltipCompareTwoAlt = (props, opts) => {
+      const { ctx, tooltip, series, w } = props
+      const o = tooltip
+      const x = o.getElForwardedEvents().clientX
+      const y = o.getElForwardedEvents().clientY
+      let title = o.dataPoints[0]?.x
+      const dataPoint = o.dataPoints[0]?.y
+      const dataPointOld = o.dataPoints[1]?.y
+
+      let titles = title.split(' ')
+      title = `${titles[1].slice(0, 3)} ${titles[0]}`
+
+      return `<div class="apexcharts-tooltip-title" style="font-family: inherit; margin-bottom: 0; padding: 6px 10px; font-weight: 600; color: var(--tooltip--foreground-color); background: var(--tooltip--bg-color, #212121); border-bottom: 1px solid #323232; font-size: 12px;">${title}</div>
+        <div class="apexcharts-tooltip-series-group" style="padding: 6px 10px; display: flex; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div class="apexcharts-tooltip-marker" style="width: 10px; height: 10px; border-radius: 50%; background-color: ${w.globals.colors[0]};"></div>
+            <span style="color: var(--tooltip--foreground-color); font-size: 12px;">${opts.title}:</span>
+          </div>
+          <span style="color: var(--tooltip--foreground-color); font-weight: 600; font-size: 12px;">${opts.valuePrefix || ''}${typeof opts.formatter === 'function' ? opts.formatter(dataPoint) : dataPoint}${opts.valueSuffix || ''}</span>
+        </div>
+        <div class="apexcharts-tooltip-series-group" style="padding: 6px 10px; display: flex; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div class="apexcharts-tooltip-marker" style="width: 10px; height: 10px; border-radius: 50%; background-color: ${w.globals.colors[1]};"></div>
+            <span style="color: var(--tooltip--foreground-color); font-size: 12px;">${opts.hasTextLabel ? '2023' : ''}:</span>
+          </div>
+          <span style="color: var(--tooltip--foreground-color); font-weight: 600; font-size: 12px;">${opts.valuePrefix || ''}${typeof opts.formatter === 'function' ? opts.formatter(dataPointOld) : dataPointOld}${opts.valueSuffix || ''}</span>
+        </div>`
+    }
+
+    const buildChart = (selector, configFn) => {
+      const chartEl = document.querySelector(selector)
+      if (!chartEl) return
+      const chart = new ApexCharts(chartEl, configFn())
+      chart.render()
+      return chart
+    }
+
+    window.addEventListener("load", () => {
+      ;(function () {
+        buildChart('#apex-multiple-area-charts-compare-alt', () => ({
+          chart: {
+            height: 400,
+            type: 'area',
+            toolbar: { show: false },
+            zoom: { enabled: false }
+          },
+          series: [
+            { name: '2024', data: [5000, 15000, 8000, 60000, 75000, 85000, 93000, 102000, 87000, 95000, 120000, 130000] },
+            { name: '2023', data: [20000, 45000, 70000, 30000, 90000, 40000, 95000, 75000, 105000, 50000, 35000, 65000] }
+          ],
+          legend: { show: true, position: 'top', horizontalAlign: 'right', labels: { useSeriesColors: true } },
+          dataLabels: { enabled: false },
+          stroke: { curve: 'smooth', width: 2 },
+          grid: { strokeDashArray: 2, borderColor: '#333333' },
+          colors: ['#3B82F6', '#8B5CF6'],
+          fill: {
+            gradient: {
+              shadeIntensity: 1,
+              opacityFrom: 0.7,
+              gradientToColors: ['#0f0f0f'],
+              opacityTo: 0.3,
+              stops: [0, 90, 100]
+            }
+          },
+          xaxis: {
+            type: 'category',
+            tickPlacement: 'on',
+            categories: ['1 January', '1 February', '1 March', '1 April', '1 May', '1 June', '1 July', '1 August', '1 September', '1 October', '1 November', '1 December'],
+            axisBorder: { show: false },
+            axisTicks: { show: false },
+            crosshairs: { stroke: { dashArray: 0 }, dropShadow: { show: false } },
+            tooltip: { enabled: false },
+            labels: {
+              style: { colors: '#ffffff', fontSize: '12px', fontWeight: 400 },
+              formatter: title => title ? `${title.split(' ')[1].slice(0, 3)}` : title
+            }
+          },
+          yaxis: {
+            labels: {
+              align: 'left',
+              minWidth: 0,
+              maxWidth: 140,
+              style: { colors: '#ffffff', fontSize: '12px', fontWeight: 400 },
+              formatter: value => value >= 1000 ? `${value / 1000}k` : value
+            }
+          },
+          tooltip: {
+            x: { format: 'MMMM yyyy' },
+            y: { formatter: value => `$${value >= 1000 ? `${value / 1000}k` : value}` },
+            custom: function (props) {
+              return buildTooltipCompareTwoAlt(props, { title: 'Revenue', valuePrefix: '$', hasTextLabel: true, wrapperExtClasses: '', markerExtClasses: '' })
+            }
+          },
+          responsive: [{
+            breakpoint: 568,
+            options: {
+              chart: { height: 300 },
+              labels: { style: { fontSize: '10px', colors: '#ffffff' }, offsetX: -2, formatter: title => title.slice(0, 3) },
+              yaxis: { labels: { align: 'left', minWidth: 0, maxWidth: 140, style: { fontSize: '10px', colors: '#ffffff' }, formatter: value => value >= 1000 ? `${value / 1000}k` : value } }
+            }
+          }]
+        }))
+      })()
+    })
+  </script>
   <script>
     AdminSidebar.render('dashboard');
     AdminDashboard.init();

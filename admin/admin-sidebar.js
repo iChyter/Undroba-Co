@@ -1,10 +1,15 @@
 const AdminSidebar = {
   currentPage: '',
+  isExpanded: false,
+  hoverTimeout: null,
 
   render(page) {
     this.currentPage = page;
     const sidebar = document.getElementById('adminSidebar');
     if (!sidebar) return;
+    
+    // Configurar eventos hover
+    this.setupHoverEvents(sidebar);
 
     sidebar.innerHTML = `
       <div class="admin-sidebar-logo">
@@ -73,6 +78,40 @@ const AdminSidebar = {
         localStorage.removeItem('sb-session');
         window.location.href = '../login.html';
       });
+    }
+  },
+
+  setupHoverEvents(sidebar) {
+    // Expandir al entrar el mouse
+    sidebar.addEventListener('mouseenter', () => {
+      if (this.hoverTimeout) {
+        clearTimeout(this.hoverTimeout);
+        this.hoverTimeout = null;
+      }
+      this.expandSidebar();
+    });
+    
+    // Colapsar al salir el mouse con pequeño delay
+    sidebar.addEventListener('mouseleave', () => {
+      this.hoverTimeout = setTimeout(() => {
+        this.collapseSidebar();
+      }, 150);
+    });
+  },
+
+  expandSidebar() {
+    const sidebar = document.getElementById('adminSidebar');
+    if (sidebar) {
+      sidebar.classList.add('expanded');
+      this.isExpanded = true;
+    }
+  },
+
+  collapseSidebar() {
+    const sidebar = document.getElementById('adminSidebar');
+    if (sidebar) {
+      sidebar.classList.remove('expanded');
+      this.isExpanded = false;
     }
   }
 };

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product - Undroba Co.</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar" id="adminSidebar"></aside>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Edit Product</h1>
+        <div class="admin-header-actions">
+          <a href="productos.html" class="btn-primary" style="text-decoration: none;">Back to Products</a>
+        </div>
+      </div>
+      
+      <div class="admin-card">
+        <form class="admin-form" id="productForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="productName" required>
+            </div>
+            <div class="form-group">
+              <label>Price</label>
+              <input type="number" id="productPrice" required min="0">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="productDesc"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Category</label>
+              <select id="productCategoria" required>
+                <option value="">Select...</option>
+                <option value="sueter">Suéter</option>
+                <option value="sudadera">Sudadera</option>
+                <option value="camiseta">Camiseta</option>
+                <option value="pantalon">Pantalón</option>
+                <option value="short">Short</option>
+                <option value="zapatos">Zapatos</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select id="productGenero" required>
+                <option value="">Select...</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="unisex">Unisex</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Images</label>
+            <div class="image-upload-area" id="imageUploadArea">
+              <input type="file" class="image-upload-input" id="imageInput" accept="image/*" multiple>
+              <div class="image-upload-icon">📷</div>
+              <p class="image-upload-text">Click or drag images here</p>
+            </div>
+            <div class="image-preview-grid" id="imagePreview"></div>
+          </div>
+          <div class="variants-section">
+            <h4 class="variants-title">Colors & Sizes (Stock)</h4>
+            <div id="variantsContainer"></div>
+            <button type="button" class="btn-add-color" id="addColorBtn">+ Add Color</button>
+          </div>
+          <button type="submit" class="btn-add-variant">Update Product</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/imagenes.js"></script>
+  <script src="admin-sidebar.js"></script>
+  <script src="admin-editar.js"></script>
+  <script>
+    AdminSidebar.render('productos');
+    AdminEditar.init();
+  </script>
+</body>
+</html>

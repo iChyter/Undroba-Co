@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo Pedido - Undroba Co.</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar" id="adminSidebar"></aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Nuevo Pedido (Proveedor)</h1>
+        <div class="admin-header-actions">
+          <a href="pedidos.html" class="btn-secondary" style="text-decoration: none;">← Volver</a>
+        </div>
+      </div>
+      
+      <div class="admin-card">
+        <form id="pedidoForm" class="admin-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="proveedor">Proveedor</label>
+              <select id="proveedor" name="proveedor" required>
+                <option value="">Seleccionar proveedor</option>
+                <option value="temu">Temu</option>
+                <option value="shein">Shein</option>
+                <option value="aliexpress">Aliexpress</option>
+                <option value="otros">Otros</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fecha_pedido">Fecha del Pedido</label>
+              <input type="date" id="fecha_pedido" name="fecha_pedido" required>
+            </div>
+            <div class="form-group">
+              <label for="numero_pedido">Número de Pedido (opcional)</label>
+              <input type="text" id="numero_pedido" name="numero_pedido" placeholder="Nº pedido en la plataforma">
+            </div>
+            <div class="form-group">
+              <label for="estado">Estado</label>
+              <select id="estado" name="estado" required>
+                <option value="pendiente">Pendiente</option>
+                <option value="enviado">Enviado</option>
+                <option value="recibido">Recibido</option>
+                <option value="cancelado">Cancelado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="producto">Producto</label>
+              <input type="text" id="producto" name="producto" required placeholder="Nombre del producto">
+            </div>
+            <div class="form-group">
+              <label for="cantidad">Cantidad</label>
+              <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+            </div>
+            <div class="form-group">
+              <label for="precio_unitario">Precio Unitario ($)</label>
+              <input type="number" id="precio_unitario" name="precio_unitario" min="0" step="0.01" required placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label for="precio_total">Precio Total ($)</label>
+              <input type="number" id="precio_total" name="precio_total" min="0" step="0.01" readonly>
+            </div>
+            <div class="form-group">
+              <label for="gastos_envio">Gastos de Envío ($)</label>
+              <input type="number" id="gastos_envio" name="gastos_envio" min="0" step="0.01" value="0">
+            </div>
+            <div class="form-group">
+              <label for="fecha_estimada">Fecha Estimada de Llegada</label>
+              <input type="date" id="fecha_estimada" name="fecha_estimada">
+            </div>
+          </div>
+          <div class="form-group full-width">
+            <label for="notas">Notas</label>
+            <textarea id="notas" name="notas" rows="3" placeholder="Notas adicionales..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Crear Pedido</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="admin-sidebar.js"></script>
+  <script src="admin-nuevo-pedido.js"></script>
+  <script>
+    AdminSidebar.render('pedidos');
+    AdminNuevoPedido.init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undroba Co.</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <span class="logo-text">Undroba Co.</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Shop</a>
+        <a href="cart.html" class="nav-link cart-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="21" r="1"></circle>
+            <circle cx="19" cy="21" r="1"></circle>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <a href="login.html" class="nav-link" id="authLink">Login</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <h1 class="page-title">Shop</h1>
+    
+    <div class="filters">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search products...">
+      </div>
+      <select class="filter-select" id="categoriaFilter">
+        <option value="">All categories</option>
+        <option value="sueter">Sweater</option>
+        <option value="sudadera">Hoodie</option>
+        <option value="camiseta">T-Shirt</option>
+        <option value="pantalon">Pants</option>
+        <option value="short">Shorts</option>
+        <option value="zapatos">Shoes</option>
+      </select>
+      <select class="filter-select" id="generoFilter">
+        <option value="">All genders</option>
+        <option value="hombre">Men</option>
+        <option value="mujer">Women</option>
+        <option value="unisex">Unisex</option>
+      </select>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <div class="loading"><div class="spinner"></div></div>
+    </div>
+  </main>
+
+  <div class="modal" id="productModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="product-detail">
+        <div class="product-images">
+          <div class="product-main-image">
+            <img id="modalMainImage" src="" alt="">
+          </div>
+          <div class="product-thumbnails" id="modalThumbnails"></div>
+        </div>
+        <div class="product-info">
+          <h2 id="modalProductName"></h2>
+          <p class="product-price" id="modalProductPrice"></p>
+          <p class="product-description" id="modalProductDesc"></p>
+          
+          <div class="product-options">
+            <div class="option-group">
+              <label>Color:</label>
+              <div class="color-options" id="modalColors"></div>
+            </div>
+            <div class="option-group">
+              <label>Size:</label>
+              <div class="size-options" id="modalSizes"></div>
+            </div>
+          </div>
+          
+          <div class="stock-info" id="modalStock"></div>
+          <button class="btn-add-cart" id="addToCartBtn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Undroba Co. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    try {
+      Productos.init();
+    } catch(e) {
+      console.error('Error initializing:', e);
+    }
+  </script>
+</body>
+</html>

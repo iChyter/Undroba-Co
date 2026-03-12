@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos - Undroba Co.</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar" id="adminSidebar"></aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Pedidos (Proveedores)</h1>
+        <div class="admin-header-actions">
+          <a href="nuevo-pedido.html" class="btn-primary" style="text-decoration: none;">+ Nuevo Pedido</a>
+        </div>
+      </div>
+
+      <div class="filters-bar">
+        <select id="filterProveedor" class="filter-select">
+          <option value="">Todos los proveedores</option>
+          <option value="temu">Temu</option>
+          <option value="shein">Shein</option>
+          <option value="aliexpress">Aliexpress</option>
+          <option value="otros">Otros</option>
+        </select>
+        <select id="filterEstado" class="filter-select">
+          <option value="">Todos los estados</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="enviado">Enviado</option>
+          <option value="recibido">Recibido</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+      </div>
+      
+      <div class="admin-card">
+        <div class="pedidos-list" id="pedidosList">
+          <div class="loading"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="admin-sidebar.js"></script>
+  <script src="admin-pedidos.js"></script>
+  <script>
+    AdminSidebar.render('pedidos');
+    AdminPedidos.init();
+  </script>
+</body>
+</html>

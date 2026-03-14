@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customers - Undroba Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Clientes - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +15,6 @@
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>Customers</h1>
-      </div>
-      
       <div class="admin-card">
         <div class="empty-state">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -27,8 +23,8 @@
             <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
           </svg>
-          <h3>No customers yet</h3>
-          <p>Customers will appear here when they create accounts.</p>
+          <h3>Sin clientes</h3>
+          <p>Los clientes aparecerán aquí cuando creen cuentas.</p>
         </div>
       </div>
     </main>
@@ -54,7 +50,7 @@
         } catch (e) { window.location.href = '../login.html'; }
       }
     };
-    AdminSidebar.render('dashboard');
+    AdminSidebar.render('clientes');
     AdminClientes.init();
   </script>
 </body>

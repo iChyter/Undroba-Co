@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Product - Undroba Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nuevo Producto - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,38 +14,32 @@
   <div class="admin-wrapper">
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
-    <!-- Main Content -->
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>New Product</h1>
-        <div class="admin-header-actions">
-          <a href="productos.html" class="btn-primary" style="text-decoration: none;">Back to Products</a>
-        </div>
-      </div>
+      <a href="productos.html" class="btn-secondary" style="text-decoration: none; margin-bottom: 1.5rem; display: inline-block; background: transparent; border: 1px solid #333; color: #fff; padding: 0.625rem 1rem; border-radius: 5px;">← Volver a Productos</a>
       
       <div class="admin-card">
         <form class="admin-form" id="productForm">
           <div class="form-row">
             <div class="form-group">
-              <label>Name</label>
-              <input type="text" id="productName" required>
+              <label style="color: rgba(255,255,255,0.7);">Nombre</label>
+              <input type="text" id="productName" required style="background: #111; border-color: #333; color: #fff;">
             </div>
             <div class="form-group">
-              <label>Price</label>
-              <input type="number" id="productPrice" required min="0">
+              <label style="color: rgba(255,255,255,0.7);">Precio</label>
+              <input type="number" id="productPrice" required min="0" style="background: #111; border-color: #333; color: #fff;">
             </div>
           </div>
 
           <div class="form-group">
-            <label>Description</label>
-            <textarea id="productDesc"></textarea>
+            <label style="color: rgba(255,255,255,0.7);">Descripción</label>
+            <textarea id="productDesc" placeholder="Detalles del producto..." style="background: #111; border-color: #333; color: #fff;"></textarea>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label>Category</label>
-              <select id="productCategoria" required>
-                <option value="">Select...</option>
+              <label style="color: rgba(255,255,255,0.7);">Categoría</label>
+              <select id="productCategoria" required style="background: #111; border-color: #333; color: #fff;">
+                <option value="">Seleccionar...</option>
                 <option value="sueter">Suéter</option>
                 <option value="sudadera">Sudadera</option>
                 <option value="camiseta">Camiseta</option>
@@ -55,9 +49,9 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Gender</label>
-              <select id="productGenero" required>
-                <option value="">Select...</option>
+              <label style="color: rgba(255,255,255,0.7);">Género</label>
+              <select id="productGenero" required style="background: #111; border-color: #333; color: #fff;">
+                <option value="">Seleccionar...</option>
                 <option value="hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
                 <option value="unisex">Unisex</option>
@@ -66,37 +60,37 @@
           </div>
 
           <div class="form-group">
-            <label>Images</label>
-            <div class="image-upload-area" id="imageUploadArea">
+            <label style="color: rgba(255,255,255,0.7);">Imágenes</label>
+            <div class="image-upload-area" id="imageUploadArea" style="border-color: #333; background: #111;">
               <input type="file" class="image-upload-input" id="imageInput" accept="image/*" multiple>
               <div class="image-upload-icon">📷</div>
-              <p class="image-upload-text">Click or drag images here<br>Will convert to WebP automatically</p>
+              <p class="image-upload-text" style="color: rgba(255,255,255,0.5);">Clic o arrastra imágenes aquí<br>Se convertirán a WebP automáticamente</p>
             </div>
             <div class="image-preview-grid" id="imagePreview"></div>
           </div>
 
-          <div class="variants-section">
-            <h4 class="variants-title">Colors & Sizes (Stock)</h4>
+          <div class="variants-section" style="border-color: #333;">
+            <h4 class="variants-title" style="color: #fff;">Colores y Tallas (Existencias)</h4>
             <div id="variantsContainer">
-              <div class="variant-color" data-color-index="0">
+              <div class="variant-color" data-color-index="0" style="border-color: #333;">
                 <div class="variant-color-header">
                   <input type="color" class="color-input" value="#000000">
-                  <input type="text" class="color-name-input" placeholder="Color name" value="Negro">
+                  <input type="text" class="color-name-input" placeholder="Nombre del color" value="Negro" style="background: #111; border-color: #333; color: #fff;">
                 </div>
                 <div class="variant-tallas">
                   <div class="variant-tallas-grid">
-                    <div class="variant-talla"><span>S</span><input type="number" placeholder="0" min="0" data-talla="S"></div>
-                    <div class="variant-talla"><span>M</span><input type="number" placeholder="0" min="0" data-talla="M"></div>
-                    <div class="variant-talla"><span>L</span><input type="number" placeholder="0" min="0" data-talla="L"></div>
-                    <div class="variant-talla"><span>XL</span><input type="number" placeholder="0" min="0" data-talla="XL"></div>
+                    <div class="variant-talla"><span>S</span><input type="number" placeholder="0" min="0" data-talla="S" style="background: #111; border-color: #333; color: #fff;"></div>
+                    <div class="variant-talla"><span>M</span><input type="number" placeholder="0" min="0" data-talla="M" style="background: #111; border-color: #333; color: #fff;"></div>
+                    <div class="variant-talla"><span>L</span><input type="number" placeholder="0" min="0" data-talla="L" style="background: #111; border-color: #333; color: #fff;"></div>
+                    <div class="variant-talla"><span>XL</span><input type="number" placeholder="0" min="0" data-talla="XL" style="background: #111; border-color: #333; color: #fff;"></div>
                   </div>
                 </div>
               </div>
             </div>
-            <button type="button" class="btn-add-color" id="addColorBtn">+ Add Color</button>
+            <button type="button" class="btn-add-color" id="addColorBtn" style="background: #111; border-color: #333; color: #fff;">+ Añadir Color</button>
           </div>
 
-          <button type="submit" class="btn-add-variant">Create Product</button>
+          <button type="submit" class="btn-primary">Crear Producto</button>
         </form>
       </div>
     </main>

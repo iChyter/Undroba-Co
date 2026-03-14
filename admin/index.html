@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Dashboard - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
@@ -15,53 +15,222 @@
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>Dashboard</h1>
-        <div class="admin-header-actions">
-          <a href="../index.html" class="btn-primary" style="text-decoration: none;">View Shop</a>
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" title="Menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="stats-row-grid">
+        <!-- Income Card (Gradient) -->
+        <div class="stat-card-premium gradient">
+          <div class="card-top">
+            <div class="card-label">Ingresos</div>
+            <button class="more-btn" title="Más opciones">···</button>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Ingresos Totales</p>
+            <div class="value-row">
+              <h2 id="stat-ingresos">$0</h2>
+              <span class="trend positive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +12.95%
+              </span>
+            </div>
+            <p class="comparison">Comparado con el mes pasado</p>
+          </div>
+        </div>
+
+        <!-- Profit Card -->
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label">Ganancia</div>
+            <button class="more-btn" title="Más opciones">···</button>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Ganancia Neta</p>
+            <div class="value-row">
+              <h2 id="stat-ganancia">$0</h2>
+              <span class="trend positive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +8.12%
+              </span>
+            </div>
+            <p class="comparison">Comparado con el mes pasado</p>
+          </div>
+        </div>
+
+        <!-- Orders Card -->
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label">Órdenes</div>
+            <button class="more-btn" title="Más opciones">···</button>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Órdenes del Mes</p>
+            <div class="value-row">
+              <h2 id="stat-ordenes">0</h2>
+              <span class="trend positive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +24.8%
+              </span>
+            </div>
+            <p class="comparison">Comparado con el mes pasado</p>
+          </div>
+        </div>
+
+        <!-- Low Stock Card -->
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label alert">Stock</div>
+            <button class="more-btn" title="Más opciones">···</button>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Stock Bajo</p>
+            <div class="value-row">
+              <h2 id="stat-stock-bajo">0</h2>
+              <span class="trend negative">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+                Urgente
+              </span>
+            </div>
+            <p class="comparison">Productos requieren reposición</p>
+          </div>
         </div>
       </div>
       
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-          </div>
-          <div class="stat-info">
-            <h3 id="stat-productos">0</h3>
-            <p>Products</p>
-          </div>
-        </div>
-        
-        <div class="stat-card">
-          <div class="stat-icon warning">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-          </div>
-          <div class="stat-info">
-            <h3 id="stat-pedidos">0</h3>
-            <p>Pedidos</p>
-          </div>
-        </div>
-        
-        <div class="stat-card">
-          <div class="stat-icon success">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          </div>
-          <div class="stat-info">
-            <h3 id="stat-caja">$0</h3>
-            <p>Caja</p>
-          </div>
-        </div>
-        </div>
-        
-        <div class="card mt-6">
+      <!-- Middle Section: Charts & Stats -->
+      <div class="dashboard-middle-grid">
+        <!-- Sales Chart -->
+        <div class="admin-card chart-main">
           <div class="card-header">
-            <h3 class="card-title">Comparativa de Ingresos</h3>
+            <div>
+              <h3 class="card-title">Análisis de Ventas</h3>
+              <p class="card-subtitle">Comparación anual de ingresos</p>
+            </div>
+            <div class="card-actions">
+              <select class="chart-filter">
+                <option value="revenue">Estimación de Ventas</option>
+                <option value="orders">Número de Órdenes</option>
+                <option value="units">Unidades Vendidas</option>
+              </select>
+              <button class="more-btn">···</button>
+            </div>
           </div>
           <div class="card-body">
-            <div id="apex-multiple-area-charts-compare-alt" class="w-full"></div>
+            <div id="sales-chart"></div>
           </div>
         </div>
+
+        <!-- Top Categories -->
+        <div class="admin-card secondary-stats">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Categorías Top</h3>
+              <p class="card-subtitle">Por volumen de ventas</p>
+            </div>
+            <button class="more-btn">···</button>
+          </div>
+          <div class="card-body">
+            <div class="progress-list" id="categories-list">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Top Products & Recent Orders -->
+      <div class="dashboard-bottom-grid">
+        <!-- Top Products -->
+        <div class="admin-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Productos Más Vendidos</h3>
+              <p class="card-subtitle">Top 5 del período seleccionado</p>
+            </div>
+            <button class="more-btn">···</button>
+          </div>
+          <div class="card-body">
+            <div class="top-products-list" id="top-products">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="admin-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Órdenes Recientes</h3>
+              <p class="card-subtitle">Últimas transacciones</p>
+            </div>
+            <button class="more-btn">···</button>
+          </div>
+          <div class="card-body">
+            <div class="recent-orders-list" id="recent-orders">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Width Transaction Table -->
+      <div class="admin-card table-section">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Historial de Transacciones</h3>
+            <p class="card-subtitle">Todas las órdenes y movimientos</p>
+          </div>
+          <div class="card-actions">
+            <button class="btn-outline mini">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Descargar
+            </button>
+            <button class="btn-primary mini">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Nueva Orden
+            </button>
+            <button class="more-btn">···</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="transaction-table">
+            <thead>
+              <tr>
+                <th style="width:40px;"><input type="checkbox"></th>
+                <th>Producto</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-tbody">
+              <!-- Dynamic content -->
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span class="showing-text">Mostrando 1-10 de 156 órdenes</span>
+          <div class="pagination">
+            <button class="page-btn" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <span class="page-dots">...</span>
+            <button class="page-btn">16</button>
+            <button class="page-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
@@ -74,112 +243,7 @@
   <script src="admin-sidebar.js"></script>
   <script src="admin.js"></script>
   <script>
-    const buildTooltipCompareTwoAlt = (props, opts) => {
-      const { ctx, tooltip, series, w } = props
-      const o = tooltip
-      const x = o.getElForwardedEvents().clientX
-      const y = o.getElForwardedEvents().clientY
-      let title = o.dataPoints[0]?.x
-      const dataPoint = o.dataPoints[0]?.y
-      const dataPointOld = o.dataPoints[1]?.y
-
-      let titles = title.split(' ')
-      title = `${titles[1].slice(0, 3)} ${titles[0]}`
-
-      return `<div class="apexcharts-tooltip-title" style="font-family: inherit; margin-bottom: 0; padding: 6px 10px; font-weight: 600; color: var(--tooltip--foreground-color); background: var(--tooltip--bg-color, #212121); border-bottom: 1px solid #323232; font-size: 12px;">${title}</div>
-        <div class="apexcharts-tooltip-series-group" style="padding: 6px 10px; display: flex; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <div class="apexcharts-tooltip-marker" style="width: 10px; height: 10px; border-radius: 50%; background-color: ${w.globals.colors[0]};"></div>
-            <span style="color: var(--tooltip--foreground-color); font-size: 12px;">${opts.title}:</span>
-          </div>
-          <span style="color: var(--tooltip--foreground-color); font-weight: 600; font-size: 12px;">${opts.valuePrefix || ''}${typeof opts.formatter === 'function' ? opts.formatter(dataPoint) : dataPoint}${opts.valueSuffix || ''}</span>
-        </div>
-        <div class="apexcharts-tooltip-series-group" style="padding: 6px 10px; display: flex; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <div class="apexcharts-tooltip-marker" style="width: 10px; height: 10px; border-radius: 50%; background-color: ${w.globals.colors[1]};"></div>
-            <span style="color: var(--tooltip--foreground-color); font-size: 12px;">${opts.hasTextLabel ? '2023' : ''}:</span>
-          </div>
-          <span style="color: var(--tooltip--foreground-color); font-weight: 600; font-size: 12px;">${opts.valuePrefix || ''}${typeof opts.formatter === 'function' ? opts.formatter(dataPointOld) : dataPointOld}${opts.valueSuffix || ''}</span>
-        </div>`
-    }
-
-    const buildChart = (selector, configFn) => {
-      const chartEl = document.querySelector(selector)
-      if (!chartEl) return
-      const chart = new ApexCharts(chartEl, configFn())
-      chart.render()
-      return chart
-    }
-
-    window.addEventListener("load", () => {
-      ;(function () {
-        buildChart('#apex-multiple-area-charts-compare-alt', () => ({
-          chart: {
-            height: 400,
-            type: 'area',
-            toolbar: { show: false },
-            zoom: { enabled: false }
-          },
-          series: [
-            { name: '2024', data: [5000, 15000, 8000, 60000, 75000, 85000, 93000, 102000, 87000, 95000, 120000, 130000] },
-            { name: '2023', data: [20000, 45000, 70000, 30000, 90000, 40000, 95000, 75000, 105000, 50000, 35000, 65000] }
-          ],
-          legend: { show: true, position: 'top', horizontalAlign: 'right', labels: { useSeriesColors: true } },
-          dataLabels: { enabled: false },
-          stroke: { curve: 'smooth', width: 2 },
-          grid: { strokeDashArray: 2, borderColor: '#333333' },
-          colors: ['#3B82F6', '#8B5CF6'],
-          fill: {
-            gradient: {
-              shadeIntensity: 1,
-              opacityFrom: 0.7,
-              gradientToColors: ['#0f0f0f'],
-              opacityTo: 0.3,
-              stops: [0, 90, 100]
-            }
-          },
-          xaxis: {
-            type: 'category',
-            tickPlacement: 'on',
-            categories: ['1 January', '1 February', '1 March', '1 April', '1 May', '1 June', '1 July', '1 August', '1 September', '1 October', '1 November', '1 December'],
-            axisBorder: { show: false },
-            axisTicks: { show: false },
-            crosshairs: { stroke: { dashArray: 0 }, dropShadow: { show: false } },
-            tooltip: { enabled: false },
-            labels: {
-              style: { colors: '#ffffff', fontSize: '12px', fontWeight: 400 },
-              formatter: title => title ? `${title.split(' ')[1].slice(0, 3)}` : title
-            }
-          },
-          yaxis: {
-            labels: {
-              align: 'left',
-              minWidth: 0,
-              maxWidth: 140,
-              style: { colors: '#ffffff', fontSize: '12px', fontWeight: 400 },
-              formatter: value => value >= 1000 ? `${value / 1000}k` : value
-            }
-          },
-          tooltip: {
-            x: { format: 'MMMM yyyy' },
-            y: { formatter: value => `$${value >= 1000 ? `${value / 1000}k` : value}` },
-            custom: function (props) {
-              return buildTooltipCompareTwoAlt(props, { title: 'Revenue', valuePrefix: '$', hasTextLabel: true, wrapperExtClasses: '', markerExtClasses: '' })
-            }
-          },
-          responsive: [{
-            breakpoint: 568,
-            options: {
-              chart: { height: 300 },
-              labels: { style: { fontSize: '10px', colors: '#ffffff' }, offsetX: -2, formatter: title => title.slice(0, 3) },
-              yaxis: { labels: { align: 'left', minWidth: 0, maxWidth: 140, style: { fontSize: '10px', colors: '#ffffff' }, formatter: value => value >= 1000 ? `${value / 1000}k` : value } }
-            }
-          }]
-        }))
-      })()
-    })
-  </script>
-  <script>
+    // Inicializar dashboard
     AdminSidebar.render('dashboard');
     AdminDashboard.init();
   </script>

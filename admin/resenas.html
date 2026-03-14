@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reviews - Undroba Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reseñas - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,17 +15,13 @@
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>Reviews</h1>
-      </div>
-      
       <div class="admin-card">
         <div class="empty-state">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
-          <h3>No reviews yet</h3>
-          <p>Customer reviews will appear here.</p>
+          <h3>Sin reseñas</h3>
+          <p>Las reseñas de clientes aparecerán aquí.</p>
         </div>
       </div>
     </main>
@@ -51,7 +47,7 @@
         } catch (e) { window.location.href = '../login.html'; }
       }
     };
-    AdminSidebar.render('dashboard');
+    AdminSidebar.render('resenas');
     AdminResenas.init();
   </script>
 </body>

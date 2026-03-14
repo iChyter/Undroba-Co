@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Responsivo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .test-info {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .test-info h1 {
+            color: #E53935;
+            margin-bottom: 10px;
+        }
+        
+        .test-info p {
+            color: #888;
+            line-height: 1.6;
+        }
+        
+        .resolution-display {
+            background: #0a0a0a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 18px;
+        }
+        
+        .resolution-display span {
+            color: #E53935;
+            font-weight: bold;
+        }
+        
+        .overflow-test {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .grid-test {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .grid-item {
+            background: #E53935;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .check-scroll {
+            background: #0a0a0a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .check-scroll.has-scroll {
+            background: #ef4444;
+        }
+        
+        .check-scroll.no-scroll {
+            background: #10b981;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-test {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-info">
+            <h1>Test de Responsividad</h1>
+            <p>Este archivo verifica que no haya scroll horizontal en diferentes tamaños de pantalla. Redimensiona la ventana para probar.</p>
+        </div>
+        
+        <div class="resolution-display">
+            Resolución actual: <span id="resolution">Cargando...</span>
+        </div>
+        
+        <div class="overflow-test">
+            <h2>Test de Grid</h2>
+            <div class="grid-test">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+            </div>
+        </div>
+        
+        <div class="check-scroll" id="scrollCheck">
+            Verificando scroll horizontal...
+        </div>
+    </div>
+    
+    <script>
+        function updateResolution() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            document.getElementById('resolution').textContent = `${width}px x ${height}px`;
+        }
+        
+        function checkScroll() {
+            const hasScroll = document.documentElement.scrollWidth > document.documentElement.clientWidth;
+            const scrollCheck = document.getElementById('scrollCheck');
+            
+            if (hasScroll) {
+                scrollCheck.className = 'check-scroll has-scroll';
+                scrollCheck.textContent = '⚠️ HAY SCROLL HORIZONTAL - Ancho: ' + document.documentElement.scrollWidth + 'px';
+            } else {
+                scrollCheck.className = 'check-scroll no-scroll';
+                scrollCheck.textContent = '✅ No hay scroll horizontal';
+            }
+        }
+        
+        window.addEventListener('resize', () => {
+            updateResolution();
+            checkScroll();
+        });
+        
+        updateResolution();
+        checkScroll();
+    </script>
+</body>
+</html>

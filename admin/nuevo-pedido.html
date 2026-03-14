@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Nuevo Pedido - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
@@ -14,21 +14,15 @@
   <div class="admin-wrapper">
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
-    <!-- Main Content -->
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>Nuevo Pedido (Proveedor)</h1>
-        <div class="admin-header-actions">
-          <a href="pedidos.html" class="btn-secondary" style="text-decoration: none;">← Volver</a>
-        </div>
-      </div>
+      <a href="pedidos.html" class="btn-secondary" style="text-decoration: none; margin-bottom: 1.5rem; display: inline-block; background: transparent; border: 1px solid #333; color: #fff; padding: 0.625rem 1rem; border-radius: 5px;">← Volver a Pedidos</a>
       
       <div class="admin-card">
         <form id="pedidoForm" class="admin-form">
-          <div class="form-grid">
+          <div class="form-row">
             <div class="form-group">
-              <label for="proveedor">Proveedor</label>
-              <select id="proveedor" name="proveedor" required>
+              <label for="proveedor" style="color: rgba(255,255,255,0.7);">Proveedor</label>
+              <select id="proveedor" name="proveedor" required style="background: #111; border-color: #333; color: #fff;">
                 <option value="">Seleccionar proveedor</option>
                 <option value="temu">Temu</option>
                 <option value="shein">Shein</option>
@@ -37,54 +31,66 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="fecha_pedido">Fecha del Pedido</label>
-              <input type="date" id="fecha_pedido" name="fecha_pedido" required>
+              <label for="fecha_pedido" style="color: rgba(255,255,255,0.7);">Fecha del Pedido</label>
+              <input type="date" id="fecha_pedido" name="fecha_pedido" required style="background: #111; border-color: #333; color: #fff;">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numero_pedido" style="color: rgba(255,255,255,0.7);">Número de Pedido (opcional)</label>
+              <input type="text" id="numero_pedido" name="numero_pedido" placeholder="Nº pedido en la plataforma" style="background: #111; border-color: #333; color: #fff;">
             </div>
             <div class="form-group">
-              <label for="numero_pedido">Número de Pedido (opcional)</label>
-              <input type="text" id="numero_pedido" name="numero_pedido" placeholder="Nº pedido en la plataforma">
-            </div>
-            <div class="form-group">
-              <label for="estado">Estado</label>
-              <select id="estado" name="estado" required>
+              <label for="estado" style="color: rgba(255,255,255,0.7);">Estado</label>
+              <select id="estado" name="estado" required style="background: #111; border-color: #333; color: #fff;">
                 <option value="pendiente">Pendiente</option>
                 <option value="enviado">Enviado</option>
                 <option value="recibido">Recibido</option>
                 <option value="cancelado">Cancelado</option>
               </select>
             </div>
+          </div>
+          
+          <div class="form-row">
             <div class="form-group">
-              <label for="producto">Producto</label>
-              <input type="text" id="producto" name="producto" required placeholder="Nombre del producto">
+              <label for="producto" style="color: rgba(255,255,255,0.7);">Producto</label>
+              <input type="text" id="producto" name="producto" required placeholder="Nombre del producto" style="background: #111; border-color: #333; color: #fff;">
             </div>
             <div class="form-group">
-              <label for="cantidad">Cantidad</label>
-              <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
-            </div>
-            <div class="form-group">
-              <label for="precio_unitario">Precio Unitario ($)</label>
-              <input type="number" id="precio_unitario" name="precio_unitario" min="0" step="0.01" required placeholder="0.00">
-            </div>
-            <div class="form-group">
-              <label for="precio_total">Precio Total ($)</label>
-              <input type="number" id="precio_total" name="precio_total" min="0" step="0.01" readonly>
-            </div>
-            <div class="form-group">
-              <label for="gastos_envio">Gastos de Envío ($)</label>
-              <input type="number" id="gastos_envio" name="gastos_envio" min="0" step="0.01" value="0">
-            </div>
-            <div class="form-group">
-              <label for="fecha_estimada">Fecha Estimada de Llegada</label>
-              <input type="date" id="fecha_estimada" name="fecha_estimada">
+              <label for="cantidad" style="color: rgba(255,255,255,0.7);">Cantidad</label>
+              <input type="number" id="cantidad" name="cantidad" min="1" value="1" required style="background: #111; border-color: #333; color: #fff;">
             </div>
           </div>
-          <div class="form-group full-width">
-            <label for="notas">Notas</label>
-            <textarea id="notas" name="notas" rows="3" placeholder="Notas adicionales..."></textarea>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="precio_unitario" style="color: rgba(255,255,255,0.7);">Precio Unitario ($)</label>
+              <input type="number" id="precio_unitario" name="precio_unitario" min="0" step="0.01" required placeholder="0.00" style="background: #111; border-color: #333; color: #fff;">
+            </div>
+            <div class="form-group">
+              <label for="precio_total" style="color: rgba(255,255,255,0.7);">Precio Total ($)</label>
+              <input type="number" id="precio_total" name="precio_total" min="0" step="0.01" readonly style="background: #0a0a0a; border-color: #333; color: #666;">
+            </div>
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn-primary">Crear Pedido</button>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="gastos_envio" style="color: rgba(255,255,255,0.7);">Gastos de Envío ($)</label>
+              <input type="number" id="gastos_envio" name="gastos_envio" min="0" step="0.01" value="0" style="background: #111; border-color: #333; color: #fff;">
+            </div>
+            <div class="form-group">
+              <label for="fecha_estimada" style="color: rgba(255,255,255,0.7);">Fecha Estimada de Llegada</label>
+              <input type="date" id="fecha_estimada" name="fecha_estimada" style="background: #111; border-color: #333; color: #fff;">
+            </div>
           </div>
+          
+          <div class="form-group">
+            <label for="notas" style="color: rgba(255,255,255,0.7);">Notas</label>
+            <textarea id="notas" name="notas" rows="3" placeholder="Notas adicionales..." style="background: #111; border-color: #333; color: #fff;"></textarea>
+          </div>
+          
+          <button type="submit" class="btn-primary">Crear Pedido</button>
         </form>
       </div>
     </main>

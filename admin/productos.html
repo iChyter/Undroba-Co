@@ -1,32 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products - Undroba Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Productos - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos específicos para productos - optimizados */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .filters-wrapper {
+      display: flex;
+      gap: 0.75rem;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .filter-select {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 0.625rem 1rem;
+      color: #fff;
+      font-size: 0.875rem;
+      min-width: 160px;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 0.625rem 1rem;
+      color: #fff;
+      font-size: 0.875rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .product-card {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 5px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .product-card:hover {
+      border-color: #333;
+      transform: translateY(-2px);
+    }
+
+    .product-image {
+      height: 140px;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .product-emoji {
+      font-size: 3.5rem;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 20px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-badge.active {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+    }
+
+    .status-badge.out {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+
+    .status-badge.low {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .product-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    .product-price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #E53935;
+      white-space: nowrap;
+    }
+
+    .product-meta {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .product-tag {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 3px;
+      padding: 0.125rem 0.5rem;
+      font-size: 0.6875rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .product-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #222;
+      font-size: 0.8125rem;
+    }
+
+    .product-stock {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-weight: 500;
+    }
+
+    .product-stock svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .product-variants {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+    }
+
+    .product-description {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+      margin: 0 0 1rem 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-action {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.375rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid #333;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .btn-action:hover {
+      border-color: #E53935;
+      color: #E53935;
+    }
+
+    .btn-action svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: rgba(255,255,255,0.5);
+      grid-column: 1 / -1;
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .empty-state h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filters-wrapper {
+        flex-direction: column;
+        min-width: 100%;
+      }
+      
+      .filter-select,
+      .search-box {
+        width: 100%;
+        min-width: 100%;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="admin-wrapper">
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
-    <!-- Main Content -->
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>Products</h1>
-        <div class="admin-header-actions">
-          <a href="nuevo-producto.html" class="btn-primary" style="text-decoration: none;">+ New Product</a>
+      <!-- Stats Cards -->
+      <div class="stats-row-grid">
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label">Total</div>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Productos</p>
+            <div class="value-row">
+              <h2 id="stat-total">0</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label">Activos</div>
+          </div>
+          <div class="card-bottom">
+            <p class="label">En Stock</p>
+            <div class="value-row">
+              <h2 id="stat-activos" style="color: #10b981;">0</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label" style="color: #ef4444;">Agotados</div>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Sin Stock</p>
+            <div class="value-row">
+              <h2 id="stat-agotados" style="color: #ef4444;">0</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label" style="color: #f59e0b;">Bajo Stock</div>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Menos de 5</p>
+            <div class="value-row">
+              <h2 id="stat-bajo" style="color: #f59e0b;">0</h2>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <div class="admin-card">
-        <div class="products-list" id="productsList">
-          <div class="loading"><div class="spinner"></div></div>
+
+      <!-- Filters & Actions -->
+      <div class="page-header">
+        <div class="filters-wrapper">
+          <select id="filterCategoria" class="filter-select">
+            <option value="">Todas las categorías</option>
+            <option value="Camisetas">Camisetas</option>
+            <option value="Sudaderas">Sudaderas</option>
+            <option value="Pantalones">Pantalones</option>
+            <option value="Chaquetas">Chaquetas</option>
+            <option value="Shorts">Shorts</option>
+            <option value="Zapatos">Zapatos</option>
+            <option value="Accesorios">Accesorios</option>
+          </select>
+          <select id="filterEstado" class="filter-select">
+            <option value="">Todos los estados</option>
+            <option value="activo">Activo</option>
+            <option value="agotado">Agotado</option>
+            <option value="stock_bajo">Stock Bajo</option>
+          </select>
+          <div class="search-box">
+            <input type="text" id="searchProducts" placeholder="Buscar productos...">
+          </div>
         </div>
+        <a href="nuevo-producto.html" class="btn-primary">+ Nuevo Producto</a>
+      </div>
+      
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsList">
+        <div class="loading"><div class="spinner"></div></div>
       </div>
     </main>
   </div>

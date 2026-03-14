@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pedidos - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
@@ -14,24 +14,18 @@
   <div class="admin-wrapper">
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
-    <!-- Main Content -->
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>Pedidos (Proveedores)</h1>
-        <div class="admin-header-actions">
-          <a href="nuevo-pedido.html" class="btn-primary" style="text-decoration: none;">+ Nuevo Pedido</a>
-        </div>
-      </div>
+      <a href="nuevo-pedido.html" class="btn-primary" style="text-decoration: none; margin-bottom: 1.5rem; display: inline-block;">+ Nuevo Pedido</a>
 
-      <div class="filters-bar">
-        <select id="filterProveedor" class="filter-select">
+      <div class="filters-bar" style="margin-bottom: 1rem;">
+        <select id="filterProveedor" class="filter-select" style="background: #111; border-color: #333; color: #fff;">
           <option value="">Todos los proveedores</option>
           <option value="temu">Temu</option>
           <option value="shein">Shein</option>
           <option value="aliexpress">Aliexpress</option>
           <option value="otros">Otros</option>
         </select>
-        <select id="filterEstado" class="filter-select">
+        <select id="filterEstado" class="filter-select" style="background: #111; border-color: #333; color: #fff;">
           <option value="">Todos los estados</option>
           <option value="pendiente">Pendiente</option>
           <option value="enviado">Enviado</option>

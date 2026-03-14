@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Caja - Undroba Co.</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin.css">
@@ -14,37 +14,54 @@
   <div class="admin-wrapper">
     <aside class="admin-sidebar" id="adminSidebar"></aside>
 
-    <!-- Main Content -->
     <main class="admin-main">
-      <div class="admin-header">
-        <h1>Caja</h1>
-        <div class="admin-header-actions">
-          <button class="btn-primary" onclick="AdminCaja.openMovimientoModal()">+ Nuevo Movimiento</button>
+      <div class="stats-row-grid" style="margin-bottom: 1.5rem;">
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label">Saldo</div>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Saldo Actual</p>
+            <div class="value-row">
+              <h2 id="saldoActual">$0.00</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label">Ingresos</div>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Ingresos (Mes)</p>
+            <div class="value-row">
+              <h2 id="ingresosMes" style="color: var(--success);">$0.00</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stat-card-premium">
+          <div class="card-top">
+            <div class="card-label">Gastos</div>
+          </div>
+          <div class="card-bottom">
+            <p class="label">Gastos (Mes)</p>
+            <div class="value-row">
+              <h2 id="gastosMes" style="color: var(--danger);">$0.00</h2>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="caja-stats">
-        <div class="caja-stat-card">
-          <span class="caja-stat-label">Saldo Actual</span>
-          <span class="caja-stat-value" id="saldoActual">$0.00</span>
-        </div>
-        <div class="caja-stat-card">
-          <span class="caja-stat-label">Ingresos (Mes)</span>
-          <span class="caja-stat-value positive" id="ingresosMes">$0.00</span>
-        </div>
-        <div class="caja-stat-card">
-          <span class="caja-stat-label">Gastos (Mes)</span>
-          <span class="caja-stat-value negative" id="gastosMes">$0.00</span>
-        </div>
-      </div>
+      <button class="btn-primary" onclick="AdminCaja.openMovimientoModal()" style="margin-bottom: 1.5rem;">+ Nuevo Movimiento</button>
 
-      <div class="filters-bar">
-        <select id="filterTipo" class="filter-select">
+      <div class="filters-bar" style="margin-bottom: 1rem;">
+        <select id="filterTipo" class="filter-select" style="background: #111; border-color: #333; color: #fff;">
           <option value="">Todos los tipos</option>
           <option value="ingreso">Ingreso</option>
           <option value="gasto">Gasto</option>
         </select>
-        <input type="month" id="filterMes" class="filter-select" value="">
+        <input type="month" id="filterMes" class="filter-select" value="" style="background: #111; border-color: #333; color: #fff;">
       </div>
       
       <div class="admin-card">
@@ -55,32 +72,31 @@
     </main>
   </div>
 
-  <!-- Modal Nuevo Movimiento -->
   <div class="modal" id="movimientoModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Nuevo Movimiento</h2>
-        <button class="modal-close" onclick="AdminCaja.closeMovimientoModal()">&times;</button>
+    <div class="modal-content" style="background: #0a0a0a; border: 1px solid #333;">
+      <div class="modal-header" style="border-bottom-color: #333;">
+        <h2 style="color: #fff;">Nuevo Movimiento</h2>
+        <button class="modal-close" onclick="AdminCaja.closeMovimientoModal()" style="color: #666;">&times;</button>
       </div>
       <form id="movimientoForm" class="modal-form">
         <div class="form-group">
-          <label for="movimientoTipo">Tipo</label>
-          <select id="movimientoTipo" name="tipo" required>
+          <label for="movimientoTipo" style="color: rgba(255,255,255,0.7);">Tipo</label>
+          <select id="movimientoTipo" name="tipo" required style="background: #111; border-color: #333; color: #fff;">
             <option value="ingreso">Ingreso</option>
             <option value="gasto">Gasto</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="movimientoMonto">Monto ($)</label>
-          <input type="number" id="movimientoMonto" name="monto" min="0" step="0.01" required>
+          <label for="movimientoMonto" style="color: rgba(255,255,255,0.7);">Monto ($)</label>
+          <input type="number" id="movimientoMonto" name="monto" min="0" step="0.01" required style="background: #111; border-color: #333; color: #fff;">
         </div>
         <div class="form-group">
-          <label for="movimientoFecha">Fecha</label>
-          <input type="date" id="movimientoFecha" name="fecha" required>
+          <label for="movimientoFecha" style="color: rgba(255,255,255,0.7);">Fecha</label>
+          <input type="date" id="movimientoFecha" name="fecha" required style="background: #111; border-color: #333; color: #fff;">
         </div>
         <div class="form-group">
-          <label for="movimientoCategoria">Categoría</label>
-          <select id="movimientoCategoria" name="categoria" required>
+          <label for="movimientoCategoria" style="color: rgba(255,255,255,0.7);">Categoría</label>
+          <select id="movimientoCategoria" name="categoria" required style="background: #111; border-color: #333; color: #fff;">
             <option value="venta">Venta</option>
             <option value="gasto_proveedor">Gasto Proveedor</option>
             <option value="gasto_envio">Gasto Envío</option>
@@ -89,11 +105,11 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="movimientoDescripcion">Descripción</label>
-          <input type="text" id="movimientoDescripcion" name="descripcion" required>
+          <label for="movimientoDescripcion" style="color: rgba(255,255,255,0.7);">Descripción</label>
+          <input type="text" id="movimientoDescripcion" name="descripcion" required style="background: #111; border-color: #333; color: #fff;">
         </div>
         <div class="form-actions">
-          <button type="button" class="btn-secondary" onclick="AdminCaja.closeMovimientoModal()">Cancelar</button>
+          <button type="button" class="btn-secondary" onclick="AdminCaja.closeMovimientoModal()" style="background: transparent; border-color: #333; color: #fff;">Cancelar</button>
           <button type="submit" class="btn-primary">Guardar</button>
         </div>
       </form>
